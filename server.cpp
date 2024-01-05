@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     // and wsaData will be filled with initialized library information.
     WSADATA wsaData;
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) ErrExit("WSAStartup() error!");
-    printf("WSAStartup() succeed.\n");
+    printf("WSAStartup() succeeded.\n");
 #endif
     // ------------------------------------------------------------------------------------------
     // create server socket
@@ -44,7 +44,7 @@ int main(int argc, char* argv[])
     // Type: SOCK_STREAM, SOCK_DGRAM
     SOCKET serv_sock = socket(PF_INET, SOCK_STREAM, 0);
     if (serv_sock == INVALID_SOCKET) ErrExit("socket() error!");
-    printf("socket() succeed.\n");
+    printf("socket() succeeded.\n");
     // ------------------------------------------------------------------------------------------
     // create server address
     SOCKADDR_IN serv_addr;
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     // ------------------------------------------------------------------------------------------
     // listen socket
     if (listen(serv_sock, 5) == SOCKET_ERROR) ErrExit("listen() error!");
-    printf("listen() succeed.\n");
+    printf("listen() succeeded.\n");
     // ------------------------------------------------------------------------------------------
     // accept socket
     SOCKADDR_IN clnt_addr;

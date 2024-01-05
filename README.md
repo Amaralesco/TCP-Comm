@@ -29,8 +29,10 @@ Dive into the world of TCP client-server connections with this hands-on learning
 ## Getting Started
 
 1. Clone the repository.
-2. Compile and run the `server.cpp` file, when running choose the port that you will be using. `gcc server.cpp -o server ./server 7777`
+2. Compile and run the `server.cpp` file, when running choose the port that you will be using. `gcc server.cpp -o server && ./server 7777`
 3. Compile and run the `client.cpp` file, when running choose the IP and the port you will be using gcc `gcc client.cpp -o client && ./client 127.0.0.1 7777`
+
+During testing, putty was also used to simulate the Client end of the server.
 
 ## Contribution
 
