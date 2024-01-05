@@ -11,14 +11,14 @@ Dive into the world of TCP client-server connections with this hands-on learning
 
 ## Server
 
-- [ ] Implement the code to create a socket and listen on a specified port (e.g., 7777).
-- [ ] Greet connecting clients with the message "Welcome."
+- [x] Implement the code to create a socket and listen on a specified port (e.g., 7777).
+- [x] Greet connecting clients with the message "Welcome."
 - [ ] Print received messages from clients to the console.
 
 ## Client
 
-- [ ] Implement the code to allow the client to connect to a socket on the server's port.
-- [ ] Receive and print the welcome message upon connecting to the server.
+- [x] Implement the code to allow the client to connect to a socket on the server's port.
+- [x] Receive and print the welcome message upon connecting to the server.
 - [ ] Start sending messages with random integer values (e.g., "1," "2," "3," "4," ...) to the server.
 
 ## Bonus Objectives
@@ -29,8 +29,8 @@ Dive into the world of TCP client-server connections with this hands-on learning
 ## Getting Started
 
 1. Clone the repository.
-2. Compile and run the `server.cpp` file.
-3. Compile and run the `client.cpp` file.
+2. Compile and run the `server.cpp` file, when running choose the port that you will be using. `gcc server.cpp -o server ./server 7777`
+3. Compile and run the `client.cpp` file, when running choose the IP and the port you will be using gcc `gcc client.cpp -o client && ./client 127.0.0.1 7777`
 
 ## Contribution
 

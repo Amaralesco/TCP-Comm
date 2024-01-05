@@ -17,6 +17,8 @@
     #error "Unknown"
 #endif
 
+using namespace std;
+
 static void ErrExit(char* msg)
 {
     fputs(msg, stderr);
@@ -62,16 +64,48 @@ int main(int argc, char* argv[])
     // accept socket
     SOCKADDR_IN clnt_addr;
     int sz_clnt_addr = sizeof(clnt_addr);
-    SOCKET clnt_sock = accept(serv_sock, (SOCKADDR*)&clnt_addr, (socklen_t*)&sz_clnt_addr);
+    SOCKET clnt_sock = accept(serv_sock, (SOCKADDR*)&clnt_addr, (socklen_t*) &sz_clnt_addr);
     if (clnt_sock == INVALID_SOCKET) ErrExit("accept() error!");
-    printf("accept() succeed.\n");
-    // ------------------------------------------------------------------------------------------
-    // send data
-    char buff[] = "hello world";
-    int sent_len = send(clnt_sock, buff, sizeof(buff), 0);
-    printf("sending %d bytes.\n", sent_len);  // sending 12 bytes.
-    // ------------------------------------------------------------------------------------------
-    // close socket
+    printf("accept() succeeded.\n");
+    
+    char buff[4096];
+
+    while (true){
+        //ZeroMemory(buff,4096); // Fills a buff with zeros.
+        memset(buff,0,4096);
+        
+
+        //Wait for client to send data
+        int read_len = recv(clnt_sock, buff, 4096,0);
+        if(read_len == SOCKET_ERROR){ // SOCKET_ERROR is -1
+            printf("Error in recv(). Quitting");
+            break;
+        } 
+
+        if(read_len == 0){
+            printf("Client disconnected");
+            break;
+        }
+
+        send(clnt_sock, buff, read_len+1,0 );
+        printf("%s",buff);
+
+
+    }
+
+        /* 
+        // ------------------------------------------------------------------------------------------
+        // send data
+        char buff[] = "Welcome";
+        int sent_len = send(clnt_sock, buff, sizeof(buff), 0);
+        printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
+        // ------------------------------------------------------------------------------------------
+        char number[] = "1";
+        sent_len = send(clnt_sock, number, sizeof(number), 0);
+        printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
+         */
+    
+    // close socket // Needs to be changed for multiple connections
 #ifdef _WIN32
     closesocket(clnt_sock);
     closesocket(serv_sock);
