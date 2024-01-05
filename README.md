@@ -19,7 +19,7 @@ Dive into the world of TCP client-server connections with this hands-on learning
 
 - [x] Implement the code to allow the client to connect to a socket on the server's port.
 - [x] Receive and print the welcome message upon connecting to the server.
-- [ ] Start sending messages with random integer values (e.g., "1," "2," "3," "4," ...) to the server.
+- [x] Start sending messages with random integer values (e.g., "1," "2," "3," "4," ...) to the server.
 
 ## Bonus Objectives
 
