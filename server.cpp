@@ -67,8 +67,14 @@ int main(int argc, char* argv[])
     SOCKET clnt_sock = accept(serv_sock, (SOCKADDR*)&clnt_addr, (socklen_t*) &sz_clnt_addr);
     if (clnt_sock == INVALID_SOCKET) ErrExit("accept() error!");
     printf("accept() succeeded.\n");
-    
+
+    // ------------------------------------------------------------------------------------------
     char buff[4096];
+    // send data
+    //buff = "Welcome";
+    int sent_len = send(clnt_sock, "Welcome", 8, 0);
+    printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
+
 
     while (true){
         //ZeroMemory(buff,4096); // Fills a buff with zeros.
@@ -78,28 +84,31 @@ int main(int argc, char* argv[])
         //Wait for client to send data
         int read_len = recv(clnt_sock, buff, 4096,0);
         if(read_len == SOCKET_ERROR){ // SOCKET_ERROR is -1
-            printf("Error in recv(). Quitting");
+            printf("Error in recv(). Quitting\n");
             break;
         } 
 
         if(read_len == 0){
-            printf("Client disconnected");
+            printf("Client disconnected\n");
             break;
         }
+        if (buff[0] == 'q' && read_len == 1)
+        {
+            printf("Terminating upon Client request\n");
+            break;
+        }
+        
 
-        send(clnt_sock, buff, read_len+1,0 );
+        //send(clnt_sock, buff, read_len+1,0 );
         printf("%s",buff);
 
 
     }
 
-        /* 
+         
+
         // ------------------------------------------------------------------------------------------
-        // send data
-        char buff[] = "Welcome";
-        int sent_len = send(clnt_sock, buff, sizeof(buff), 0);
-        printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
-        // ------------------------------------------------------------------------------------------
+        /*
         char number[] = "1";
         sent_len = send(clnt_sock, number, sizeof(number), 0);
         printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.

@@ -13,7 +13,7 @@ Dive into the world of TCP client-server connections with this hands-on learning
 
 - [x] Implement the code to create a socket and listen on a specified port (e.g., 7777).
 - [x] Greet connecting clients with the message "Welcome."
-- [ ] Print received messages from clients to the console.
+- [x] Print received messages from clients to the console.
 
 ## Client
 
