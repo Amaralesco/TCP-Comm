@@ -3,7 +3,10 @@
 #include <string.h>
 #include <stdbool.h>
 
-
+// ------------------------------------------------------------------------------------------
+// How to run this file
+// gcc client.cpp -o client && ./client 127.0.0.1 7779
+// ------------------------------------------------------------------------------------------
 
 #ifdef _WIN32
     #include <winsock2.h>
@@ -108,9 +111,10 @@ int main(int argc, char* argv[])
     int sent;
     do{
         memset(buff,0,30);
-        sent = rand() %9+1;
-        buff[0] = '0'+sent;
-        buff[1] = '\n';
+        sent = rand() %99+1;
+        buff[0] = '0'+sent/10;
+        buff[1] = '0'+sent%10;
+        buff[2] = '\n';
         printf("Sending:%s",buff);
         int sendResult = send(sock, buff, sizeof(buff), 0);
         //sleep(10);

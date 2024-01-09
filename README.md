@@ -37,5 +37,3 @@ During testing, putty was also used to simulate the Client end of the server.
 ## Contribution
 
 Feel free to contribute by providing enhancements, bug fixes, or additional features. Create a pull request, and let's make this learning exercise even better together!
-
-Happy coding! 🚀

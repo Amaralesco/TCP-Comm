@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+// ------------------------------------------------------------------------------------------
+// How to run this file
+// gcc server.cpp -o server && ./server 7777
+//
+// To test a connection, optionally you can use putty with IP 127.0.0.1 and port used above
+// in this case 7777 
+// ------------------------------------------------------------------------------------------
+
 #ifdef _WIN32
     #include <winsock2.h>
 #elif __unix__ // Previously i was trying to use the following for Windows and it was not working
@@ -69,15 +77,15 @@ int main(int argc, char* argv[])
     printf("accept() succeeded.\n");
 
     // ------------------------------------------------------------------------------------------
-    char buff[4096];
     // send data
+    char buff[4096];
     //buff = "Welcome";
     int sent_len = send(clnt_sock, "Welcome", 8, 0);
     printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
 
 
     while (true){
-        //ZeroMemory(buff,4096); // Fills a buff with zeros.
+        //ZeroMemory(buff,4096); // Fills our buffer with zeros.
         memset(buff,0,4096);
         
 
@@ -105,14 +113,6 @@ int main(int argc, char* argv[])
 
     }
 
-         
-
-        // ------------------------------------------------------------------------------------------
-        /*
-        char number[] = "1";
-        sent_len = send(clnt_sock, number, sizeof(number), 0);
-        printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
-         */
     
     // close socket // Needs to be changed for multiple connections
 #ifdef _WIN32
