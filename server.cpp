@@ -79,7 +79,6 @@ int main(int argc, char* argv[])
     // ------------------------------------------------------------------------------------------
     // send data
     char buff[4096];
-    //buff = "Welcome";
     int sent_len = send(clnt_sock, "Welcome", 8, 0);
     printf("sending %d bytes.\n", sent_len);  // sending 8 bytes.
 
