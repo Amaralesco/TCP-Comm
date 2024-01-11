@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
+
 
 // ------------------------------------------------------------------------------------------
 // How to run this file
@@ -76,6 +78,25 @@ int main(int argc, char* argv[])
     if (clnt_sock == INVALID_SOCKET) ErrExit("accept() error!");
     printf("accept() succeeded.\n");
 
+    //Create time structure for file
+    const int MAXLEN = 80;
+    char time_string[MAXLEN];
+    time_t t = time(0);
+    strftime(time_string, MAXLEN, "%d-%m-%Y", localtime(&t));
+
+
+    // Create/Edit and open a text file
+    ofstream MyFile;
+    MyFile.open("history.txt", std::ios::app);
+    MyFile << "\nNew Connection established with client on port: " << argv[1] << endl;
+    if(MyFile.is_open()){
+        printf("File %s created/edited\n",time_string);
+    }
+    else{
+        printf("There has been a problem creating file \n");
+    }
+
+
     // ------------------------------------------------------------------------------------------
     // send data
     char buff[4096];
@@ -99,6 +120,16 @@ int main(int argc, char* argv[])
             printf("Client disconnected\n");
             break;
         }
+
+        //Print message received in console
+        printf("%s",buff);
+        //send(clnt_sock, buff, read_len+1,0 );
+        
+        // Write to the file
+        MyFile << time_string << " " <<  argv[1] << " " << buff; 
+        //dd-mm-yyyy client_x(used port) message.
+
+
         if (buff[0] == 'q' && read_len == 1)
         {
             printf("Terminating upon Client request\n");
@@ -106,8 +137,7 @@ int main(int argc, char* argv[])
         }
         
 
-        //send(clnt_sock, buff, read_len+1,0 );
-        printf("%s",buff);
+        
 
 
     }
@@ -122,6 +152,9 @@ int main(int argc, char* argv[])
     close(clnt_sock);
     close(serv_sock);
 #endif
+    // Close the file
+    MyFile.close();
+
     // ------------------------------------------------------------------------------------------
 }
 

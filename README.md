@@ -2,7 +2,7 @@
 
 ## Overview
 
-Dive into the world of TCP client-server connections with this hands-on learning exercise in C++. Explore the fundamental concepts of network programming by creating a simple Client-Server application using TCP sockets.
+Dive into the world of TCP client-server connections with this hands-on learning exercise in C++. Explore the fundamental concepts of network programming by creating a simple Client-Server application using TCP sockets. You can find my solution inside the repository, but here you can find the full list of objectives.
 
 ## Main Objectives
 
@@ -23,16 +23,19 @@ Dive into the world of TCP client-server connections with this hands-on learning
 
 ## Bonus Objectives
 
-- [ ] Save received messages from the server in the "history.txt" file with the format "dd-mm-yyyy client_x message."
+- [x] Save received messages from the server in the "history.txt" file with the format "dd-mm-yyyy client_x message."
 - [ ] Connect two clients to the same server.
 
-## Getting Started
+## Using my solutions
 
 1. Clone the repository.
 2. Compile and run the `server.cpp` file, when running choose the port that you will be using. `gcc server.cpp -o server && ./server 7777`
 3. Compile and run the `client.cpp` file, when running choose the IP and the port you will be using gcc `gcc client.cpp -o client && ./client 127.0.0.1 7777`
 
 During testing, putty was also used to simulate the Client end of the server.
+
+Unfortunately, Multiple connections to a server is not yet correctly function and is still work in progress.s
+
 
 ## Contribution
 
